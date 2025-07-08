@@ -39,9 +39,9 @@ const main = async () => {
 
 	await core.group('Installing Prettier', async () => {
 		const commands: ReturnType<typeof execute>[] = [];
-		commands.push(execute('npm i -g prettier@3.0.0', { silent: true }));
+		commands.push(execute('npm i -g prettier@3.6.2', { silent: true }));
 		commands.push(
-			execute('npm i -g prettier-plugin-java@2.2.0', { silent: true })
+			execute('npm i -g prettier-plugin-java@2.6.8', { silent: true })
 		);
 		await Promise.all(commands).then((results) => {
 			if (results.some((result) => result.err)) {
