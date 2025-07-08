@@ -54,7 +54,7 @@ const main = async () => {
 		writeFileSync('./Java.java', unformattedJava);
 	}
 
-	const command = `prettier ${args} "${files}"`;
+	const command = `prettier ${args} --plugin=/usr/local/lib/node_modules/prettier-plugin-java/dist/index.js "${files}"`;
 	core.debug(command);
 
 	await core.group('Running Prettier', async () => {
