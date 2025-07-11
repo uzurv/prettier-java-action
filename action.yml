@@ -12,6 +12,10 @@ inputs:
     description: 'Pattern to match the files to be formatted.'
     required: false
     default: '**/*.java'
+  ignore:
+    description: 'Pattern of files to ignore'
+    required: false
+    default: '**/*DAOImpl.java'
   commit:
     description: 'Whether or not you want the action to push to your repo with the formatting.'
     required: false

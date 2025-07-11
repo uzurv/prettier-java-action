@@ -29,6 +29,7 @@ const main = async () => {
 	const DEBUG = core.isDebug();
 	const args = core.getInput('prettier-args') || '-w';
 	const files = core.getInput('files') || '**/*.java';
+	const ignore = core.getInput('ignore') || '**/*.sql';
 
 	const commitString = core.getInput('commit') || 'true';
 	const commit = commitString.toLowerCase() !== 'false';
@@ -54,7 +55,7 @@ const main = async () => {
 		writeFileSync('./Java.java', unformattedJava);
 	}
 
-	const command = `prettier ${args} --plugin=/usr/local/lib/node_modules/prettier-plugin-java/dist/index.js "${files}"`;
+	const command = `prettier ${args} --plugin=/usr/local/lib/node_modules/prettier-plugin-java/dist/index.js "${files}" "!${ignore}"`;
 	core.debug(command);
 
 	await core.group('Running Prettier', async () => {

@@ -99,6 +99,7 @@ const main = async () => {
     const DEBUG = core.isDebug();
     const args = core.getInput('prettier-args') || '-w';
     const files = core.getInput('files') || '**/*.java';
+    const ignore = core.getInput('ignore') || '**/*.sql';
     const commitString = core.getInput('commit') || 'true';
     const commit = commitString.toLowerCase() !== 'false';
     const githubUsername = core.getInput('github-username') || 'github-actions';
@@ -116,7 +117,7 @@ const main = async () => {
     if (DEBUG) {
         (0, fs_1.writeFileSync)('./Java.java', dev_1.unformattedJava);
     }
-    const command = `prettier ${args} --plugin=/usr/local/lib/node_modules/prettier-plugin-java/dist/index.js "${files}"`;
+    const command = `prettier ${args} --plugin=/usr/local/lib/node_modules/prettier-plugin-java/dist/index.js "${files}" "!${ignore}"`;
     core.debug(command);
     await core.group('Running Prettier', async () => {
         const { err, stdErr } = await execute(command);
